@@ -1,0 +1,74 @@
+{% load menu_tags social_tags cache %}
+
+{% cache 5000 left_nav %}
+<!-- Humberger Begin -->
+<div class="humberger__menu__overlay"></div>
+<div class="humberger__menu__wrapper">
+    <div class="humberger__menu__logo">
+        <a href="/"><img src="img/humberger/humberger-logo.png" alt=""></a>
+    </div>
+    <nav class="humberger__menu__nav mobile-menu">
+        <ul>
+            <li><a href="/">Главная</a></li>
+            {% get_categories %} 
+           <!--  <li class="dropdown">
+                <a href="#">Рецепты</a>
+                <ul class="dropdown__menu">
+                    <li><a href="./categories-grid.html">Categories Grid</a></li>
+                </ul>
+            </li> -->
+            <!-- <li><a href="{% url 'about' %}">Обо мне</a></li> -->
+            <li><a href="{% url 'contact' %}">Контакты</a></li>
+        </ul>
+    </nav>
+    <div id="mobile-menu-wrap"></div>
+
+<!-- Начало работы логики вывода информации Обо мне, иконок соц.сетей и подписки на рассылку -->
+    <div class="humberger__menu__about">
+        <div class="humberger__menu__title sidebar__item__title">
+            <h6><a href="{% url 'about' %}">Обо мне</a></h6>
+        </div>
+<!-- Вывод информации Обо мне через mini текст -->
+        {% get_about as about %}
+        <img src="{{ about.get_first_image }}" alt="">
+            {{ about.mini_text|safe }}
+
+<!-- Начало логики вывода иконок соц. сетей -->
+        <div class="humberger__menu__about__social  sidebar__item__follow__links">
+
+<!-- Реализация вывода через HTML текст -->
+            <a href="http://instagram.com/cake.sweet.life"><i class="fa fa-instagram"></i></a>
+            <a href="http://t.me/zyrawlevaes"><i class="fa fa-telegram"></i></a>
+            <a href="http://vk.com/zyrawyshka"><i class="fa fa-vk"></i></a>
+            <a href="#"><i class="fa fa-envelope-o"></i></a>
+
+<!-- Реализация вывода через Админку -->
+            <!-- {% get_social_links as social_links %}
+            {% for item in social_links.all %}
+                <a href="{{ item.link }}"><img src="{{ item.icon.url }}"></a>
+            {% endfor %} -->
+        </div>
+    </div>
+<!-- Конец логики вывода иконок соц. сетей -->
+
+<!-- Начало логики подписки на рассылку -->
+    <div class="humberger__menu__subscribe">
+        <div class="humberger__menu__title sidebar__item__title">
+            <h6>Рассылка</h6>
+        </div>
+        <p>Подпишитесь на нашу рассылку и получайте самые свежие обновления 
+                об акциях прямо на свой почтовый ящик.</p>
+        <form action="#">
+            <input type="text" class="email-input" placeholder="Your email">
+            <label for="agree-check">
+                Я согласен с правилами и условиями
+                <input type="checkbox" id="agree-check">
+                <span class="checkmark"></span>
+            </label>
+            <button type="submit" class="site-btn">Подписаться</button>
+        </form>
+    </div>
+<!-- Конец логики подписки на рассылку -->
+</div>
+<!-- Humberger End -->
+{% endcache %}

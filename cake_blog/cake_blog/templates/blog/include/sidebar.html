@@ -1,0 +1,81 @@
+{% load social_tags cache %}
+
+{% cache 5000 sidebar %}
+{% block content %}
+    <div class="col-lg-4 col-md-4">
+        <div class="sidebar__item">
+
+<!-- Начало работы логики вывода информации About -->             
+            <div class="sidebar__about__item">
+                <div class="sidebar__item__title">
+                    <h6>Обо мне</h6>
+                </div>
+                {% get_about as about %}
+                <img src="{{ about.get_first_image }}" alt="">
+                <h6>Hi every one! I,m <span>{{ about.name }}</span></h6>
+                <p>{{ about.mini_text|safe }}</p>
+                <a href="{% url 'about' %}" class="primary-btn">Подробнее</a>
+            </div>
+<!-- Конец работы логики вывода информации About -->   
+
+<!-- Начало работы логики вывода мконок соц. сетей -->   
+            <div class="sidebar__follow__item">
+                <div class="sidebar__item__title">
+                    <h6>Подписывайтесь</h6>
+                </div>
+                <div class="sidebar__item__follow__links">
+<!-- Вывод иконок соц. сетей через HTML текст -->
+                    <a href="http://instagram.com/cake.sweet.life"><i class="fa fa-instagram"></i></a>
+                    <a href="http://t.me/zyrawlevaes"><i class="fa fa-telegram"></i></a>
+                    <a href="http://vk.com/zyrawyshka"><i class="fa fa-vk"></i></a>
+                    <a href="#"><i class="fa fa-youtube-play"></i></a>
+
+<!-- Вывод иконок соц. сетей реализация через Админку -->
+                    <!-- {% get_social_links as social_links %}
+                    {% for item in social_links.all %}
+                        <a href="{{ item.link }}"><img src="{{ item.icon.url }}"></a>
+                    {% endfor %} -->
+                </div>
+            </div>
+<!-- Конец работы логики вывода иконок соц. сетей -->  
+
+<!-- Начало вывод баннера -->  
+            <div class="sidebar__item__banner">
+                <img src="/static/img/sidebar/banner.jpg" alt="">
+            </div>
+<!-- Конец вывода баннера --> 
+
+<!-- Начало работы логики вывода вложенности категорий -->  
+
+            <div class="sidebar__item__categories">
+                <div class="sidebar__item__title">
+                    <h6>Все категории</h6>
+                </div>
+            {% include './sidebar_category.html' %}
+            </div>
+
+<!-- Конец работы логики вывода вложенности категорий -->    
+
+<!-- Начало работы логики подписки на рассылку -->         
+            <div class="sidebar__subscribe__item">
+                <div class="sidebar__item__title">
+                    <h6>Рассылка</h6>
+                </div>
+                <p>Подпишитесь на нашу рассылку и получайте самые свежие обновления 
+                об акциях прямо на свой почтовый ящик.</p>
+                <form action="#">
+                    <input type="text" class="email-input" placeholder="Ваш email">
+                    <label for="s-agree-check">
+                        Я согласен с правилами и условиями
+                        <input type="checkbox" id="s-agree-check">
+                        <span class="checkmark"></span>
+                    </label>
+                    <button type="submit" class="site-btn">Подписаться</button>
+                </form>
+            </div>
+
+<!-- Конец работы логики подписки на рассылку -->            
+        </div>
+    </div>
+{% endblock %}
+{% endcache %}

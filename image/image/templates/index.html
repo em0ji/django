@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Картинка</title>
+</head>
+	<body>
+		{% for good in good_list %}
+			<img src="{{ good.image_sale.url }}" alt="">
+		{% endfor %}
+	</body>	
+</html>
