@@ -1,11 +1,11 @@
 from django.urls import path
-from . import views
+from feedback.views import FeedbackCreate, success
+
 
 
 urlpatterns = [
     
-    # path('feedback/', views.FeedbackView.as_view(), name="feedback"),
-    # path('', views.CreateFeedback.as_view(), name="create"),
-    path('', views.Base.as_view(), name="home"),
-    # path('', views.Home, name="home"),
+    path('', FeedbackCreate.as_view(), name='feedback'),
+    path('success/', success, name='success_page')
+
 ]

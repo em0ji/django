@@ -1,0 +1,129 @@
+<html>
+{% load static %}
+
+<head>
+    <title>Независимый реестр поставщиков</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>Feedback Form</title>
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/elegant-icons.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/slicknav.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Js Plugins -->
+    <script src="{% static 'js/phonemask.js' %}"></script>
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery.slicknav.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+
+
+
+<body>
+<!-- Yandex.Metrika counter -->
+    <script type="text/javascript" >
+       (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+       m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+       (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+       ym(86529095, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            webvisor:true
+       });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/86529095" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+<!-- Contact Section Begin -->
+    <section class="contact spad">
+        <div class="container">
+            <div class="contact__text">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="breadcrumb__text">
+                            <h2>РАЗВОД НА СЕРТИФИКАТЫ СДС "НРП"</h2>
+                            <div class="breadcrumb__option">
+                                <a href="/">Главная</a>
+                                <span>Развод</span>
+                            </div>
+                            <div><br />Если Вы стали жертвой мошенника Шабурова Михаила Анатольевича (он же является генеральным директором и единственным учредителем ООО "Русаккредитация" ИНН 2366027216, номер телефона их конторы 8 800 201-08-66, email: info@nrpgov.ru) и вас развели на покупку сертификата НРП (СДС "Независимый реестр поставщиков", СДС "НРП") и пообещали, что Вы победите в закупке и с вами заключат контракт, знайте... <br /><br />Вас развели на деньги и жестко обманули. Если хотите вернуть ваши средства и наказать этого мошенника, заполняйте форму или пишите на почту.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+
+    <!-- Начало вывода карты -->
+                        <div class="contact__map">
+                            <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Ab0c5d41a1ec4d53324fc03b2cf3b27e83d9e843f46143402669be8e9ef7a4c7d&amp;source=constructor" width="500" height="350" frameborder="0"></iframe>
+                        </div>
+    <!-- Конец вывода карты -->                    
+
+    <!-- Начало логики вывода контактных данных (links) -->
+                        <div class="contact__widget">
+                            <ul>
+                                <li>
+                                    <h4>КОНТАКТНЫЕ ДАННЫЕ</h4>
+                                </li>
+                                <li>
+                                    <i class="fa fa-map-marker"></i>
+                                    <span>Адрес: г. Сочи, Несебрская улица, 6</span>
+                                </li>
+                                <li>
+                                    <i class="fa fa-mobile"></i>
+                                    <span>Телефон разводилы: 8 (988) 406-75-50</span>
+                                </li>
+                                <li>
+                                    <i class="fa fa-envelope-o"></i>
+                                    <span>Email: info@nsagov.ru (для жалоб)</span>
+                                </li>
+                                <li>
+                                    <span>Напоминаю, что по адресу г. Сочи, Несебрская улица, 6 представителей конторы нет.</span>
+                                </li>
+                            </ul>
+                        </div>
+    <!-- Конец логики вывода контактных данных (links) -->
+
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+
+    <!-- Начало логики Формы обратной связи   --> 
+                        <div class="contact__form">                     
+                            <div class="contact__form__title">
+                                <h3>СВЯЗАТЬСЯ</h3>
+                                <p>Здесь Вы можете задать интересующие Вас вопросы, выразить свое мнение по поводу развода или оставить заявку на коллективное заявление в полицию.</p>
+                            </div>
+                            <form action="{% url 'feedback' %}" method="post">
+                                
+                                {% csrf_token %}
+                                {{ form }}
+
+                                <button type="submit" class="site-btn">Отправить</button>
+                            </form>
+                        </div>
+    <!-- Конец логики Формы обратной связи -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- Contact Section End -->
+</body>
+</html>                               

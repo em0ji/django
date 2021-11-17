@@ -10,7 +10,7 @@ class Feedback(models.Model):
 	create_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата')
 
 	def __str__(self):
-		return f'{self.name} - {self.phone} - {self.email}'
+		return f'{self.name}'
 
 	class Meta:
 		verbose_name = 'Обратная связь'

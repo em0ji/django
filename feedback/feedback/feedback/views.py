@@ -1,41 +1,35 @@
-from django.shortcuts import render
-from django.views import View
-from django.views.generic import DetailView, ListView
 from django.views.generic import CreateView
-from django.http import HttpResponseRedirect
-
 from .forms import FeedbackForm
 from .models import Feedback
+from django.urls import reverse_lazy
+from django.http import HttpResponse
+from django.core.mail import send_mail
 
 
-class Base(ListView):
+class FeedbackCreate(CreateView):
 	model = Feedback
-	template_name = 'base.html'
-# 	success_url = "/"
-
-# def Home(request):
-# 	return render(request, 'base.html')
+	# fields = ["first_name", "last_name", "message"]
+	success_url = reverse_lazy('success_page')
+	form_class = FeedbackForm
 
 
-class FeedbackDetailView(DetailView):
-	model = Feedback
+	def form_valid(self, form):
+	# Формируем сообщение для отправки
+		data = form.data
+		subject = f'Сообщение с формы от {data["name"]} {data["phone"]} Почта отправителя: {data["email"]}'
+		# email(subject, data['message'])
+		return super().form_valid(form)
 
 
-	# def get(self, request):
-	# 	contacts = ContactLink.objects.all()
-	# 	form = FeedbackForm()
-	# 	phone = 'phone'
-	# 	if 'tel' in request.POST:
-	# 		phone = request.POST['tel']
-	# 	return render(request, 'base.html', {"form": form})
+# Функция отправки сообщения
+# def email(subject, content):
+#    send_mail(subject,
+#       content,
+#       'отправитель@gmail.com',
+#       ['получатель1@gmail.com']
+#    )
 
 
-	def get_context_data(self, **kwargs):
-		context = super().get_context_data(**kwargs)
-		context['form'] = FeedbackForm()
-		return context
-
-
-# class CreateFeedback(CreateView):
-# 	form_class = FeedbackForm
-# 	success_url = '/'
+# Функция, которая вернет сообщение в случае успешного заполнения формы
+def success(request):
+   return HttpResponse('Письмо отправлено! Ожидайте, с вами свяжутся!')
